@@ -102,7 +102,6 @@ public class StudentTest
     assertThat(student.toString(), containsString("classes: English and History."));
   }
 
-  @Ignore
   @Test
   public void davesToStringHasAllClassNames() {
     Student dave = createDaveStudent();
