@@ -80,7 +80,27 @@ public class StudentTest
     ArrayList<String> classes = new ArrayList<>();
     Student student = new Student("Name", classes, 1.23, "doesn't matter");
 
-    assertThat(student.toString(), containsString("and is taking 0 classes."));
+    assertThat(student.toString(), containsString("and is taking 0 classes.  "));
+  }
+
+  @Test
+  public void studentTaking1ClassHasNoComma() {
+    ArrayList<String> classes = new ArrayList<>();
+    classes.add("English");
+    Student student = new Student("Name", classes, 1.23, "doesn't matter");
+
+    assertThat(student.toString(), containsString("class: English.  "));
+  }
+
+  @Ignore
+  @Test
+  public void studentTaking2ClassHasNoComma() {
+    ArrayList<String> classes = new ArrayList<>();
+    classes.add("English");
+    classes.add("History");
+    Student student = new Student("Name", classes, 1.23, "doesn't matter");
+
+    assertThat(student.toString(), containsString("classes: English and History."));
   }
 
   @Ignore

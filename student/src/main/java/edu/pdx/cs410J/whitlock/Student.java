@@ -32,9 +32,9 @@ public class Student extends Human {
     this.classes = classes;
   }
 
-  /**                                                                               
-   * All students say "This class is too much work"
-   */
+//  /**
+//   * All students say "This class is too much work"
+//   */
 //  @Override
 //  public String says() {
 //    throw new UnsupportedOperationException("Not implemented yet");
@@ -49,7 +49,17 @@ public class Student extends Human {
     return this.getName() + " has a GPA of " + this.gpa
       + " and is taking " + numClasses + " class"
       + (numClasses != 1 ? "es" : "")
-      + (numClasses == 0 ? '.' : ": ");
+      + (numClasses == 0 ? '.' : ": " + listOfClasses() + ".")
+      + "  ";
+  }
+
+  private String listOfClasses() {
+    StringBuilder sb = new StringBuilder();
+    for (String className : this.classes) {
+      sb.append(className);
+    }
+
+    return sb.toString();
   }
 
   /**
