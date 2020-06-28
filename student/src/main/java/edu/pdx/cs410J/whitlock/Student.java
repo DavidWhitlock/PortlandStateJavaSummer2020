@@ -45,8 +45,11 @@ public class Student extends Human {
    * <code>Student</code>.                                                          
    */                                                                               
   public String toString() {
+    int numClasses = this.classes.size();
     return this.getName() + " has a GPA of " + this.gpa
-      + " and is taking " + this.classes.size() + " classes";
+      + " and is taking " + numClasses + " class"
+      + (numClasses != 1 ? "es" : "")
+      + (numClasses == 0 ? '.' : ": ");
   }
 
   /**
