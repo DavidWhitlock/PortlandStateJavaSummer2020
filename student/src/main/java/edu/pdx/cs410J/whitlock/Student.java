@@ -3,7 +3,7 @@ package edu.pdx.cs410J.whitlock;
 import edu.pdx.cs410J.lang.Human;
 
 import java.util.ArrayList;
-                                                                                    
+
 /**                                                                                 
  * This class is represents a <code>Student</code>.                                 
  */                                                                                 
@@ -134,7 +134,12 @@ public class Student extends Human {
     String gpaString = args[2];
     double gpa = Double.parseDouble(gpaString);
 
-    Student student = new Student(args[0], new ArrayList<>(), gpa, args[1]);
+    ArrayList<String> classes = new ArrayList<>();
+    for (int i = 3; i < args.length; i++) {
+      classes.add(args[i]);
+    }
+
+    Student student = new Student(args[0], classes, gpa, args[1]);
     System.out.println(student);
 
     System.exit(0);

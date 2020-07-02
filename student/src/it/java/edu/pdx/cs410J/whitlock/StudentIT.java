@@ -47,4 +47,16 @@ public class StudentIT extends InvokeMainTestCase {
       "They say \"This class is too much work\".";
     assertThat(result.getTextWrittenToStandardOut(), containsString(description));
   }
+
+  @Test
+  public void daveExampleFromAssignment() {
+    String[] args = {"Dave", "male", "3.64", "Algorithms", "Operating Systems", "Java"};
+    MainMethodResult result = invokeMain(Student.class, args);
+    assertThat(result.getExitCode(), equalTo(0));
+
+    String description = "Dave has a GPA of 3.64 and is taking 3 classes: " +
+      "Algorithms, Operating Systems, and Java.  " +
+      "He says \"This class is too much work\".";
+    assertThat(result.getTextWrittenToStandardOut(), containsString(description));
+  }
 }
