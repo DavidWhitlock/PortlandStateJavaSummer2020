@@ -122,4 +122,11 @@ public class StudentTest
 
     assertThat(female.toString(), containsString("They say"));
   }
+
+  @Test
+  public void maleStudentHasHePronoun() {
+    Student female = new Student("Him", new ArrayList<>(), 3.78, "male");
+
+    assertThat(female.toString(), containsString("He says"));
+  }
 }

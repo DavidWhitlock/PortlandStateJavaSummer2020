@@ -61,6 +61,9 @@ public class Student extends Human {
       case "female":
         return "She says";
 
+      case "male":
+        return "He says";
+
       default:
         return "They say";
     }
