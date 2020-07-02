@@ -11,6 +11,7 @@ public class Student extends Human {
 
   private final double gpa;
   private final ArrayList<String> classes;
+  private final String gender;
 
   /**
    * Creates a new <code>Student</code>                                             
@@ -30,6 +31,7 @@ public class Student extends Human {
 
     this.gpa = gpa;
     this.classes = classes;
+    this.gender = gender;
   }
 
 //  /**
@@ -50,7 +52,18 @@ public class Student extends Human {
       + " and is taking " + numClasses + " class"
       + (numClasses != 1 ? "es" : "")
       + (numClasses == 0 ? '.' : ": " + listOfClasses() + ".")
-      + "  ";
+      + "  "
+      + getPronounSays();
+  }
+
+  private String getPronounSays() {
+    switch (this.gender) {
+      case "female":
+        return "She says";
+
+      default:
+        return "They say";
+    }
   }
 
   private String listOfClasses() {

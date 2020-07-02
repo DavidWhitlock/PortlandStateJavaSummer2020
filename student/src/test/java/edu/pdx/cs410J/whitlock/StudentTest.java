@@ -108,4 +108,18 @@ public class StudentTest
 
     assertThat(dave.toString(), containsString("classes: Algorithms, Operating Systems, and Java."));
   }
+
+  @Test
+  public void femaleStudentHasShePronoun() {
+    Student female = new Student("her", new ArrayList<>(), 3.78, "female");
+
+    assertThat(female.toString(), containsString("She says"));
+  }
+
+  @Test
+  public void otherStudentHasTheyPronoun() {
+    Student female = new Student("Other", new ArrayList<>(), 3.78, "other");
+
+    assertThat(female.toString(), containsString("They say"));
+  }
 }
