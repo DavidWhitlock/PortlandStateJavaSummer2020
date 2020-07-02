@@ -119,16 +119,13 @@ public class Student extends Human {
    */
   public static void main(String[] args) {
     if (args.length == 0) {
-      System.err.println("Missing command line arguments");
-      System.exit(1);
+      printErrorMessageAndExit("Missing command line arguments");
 
     } else if (args.length == 1) {
-      System.err.println("Missing gender");
-      System.exit(1);
+      printErrorMessageAndExit("Missing gender");
 
     } else if (args.length == 2) {
-      System.err.println("Missing GPA");
-      System.exit(1);
+      printErrorMessageAndExit("Missing GPA");
     }
 
     String gpaString = args[2];
@@ -139,9 +136,18 @@ public class Student extends Human {
       classes.add(args[i]);
     }
 
-    Student student = new Student(args[0], classes, gpa, args[1]);
-    System.out.println(student);
+    try {
+      Student student = new Student(args[0], classes, gpa, args[1]);
+      System.out.println(student);
+      System.exit(0);
 
-    System.exit(0);
+    } catch (UnsupportedGenderException ex) {
+      printErrorMessageAndExit("Unsupported Gender: " + ex.getMessage());
+    }
+  }
+
+  private static void printErrorMessageAndExit(String message) {
+    System.err.println(message);
+    System.exit(1);
   }
 }

@@ -59,4 +59,15 @@ public class StudentIT extends InvokeMainTestCase {
       "He says \"This class is too much work\".";
     assertThat(result.getTextWrittenToStandardOut(), containsString(description));
   }
+
+  @Test
+  public void unsupportedGenderPrintUnsupportedGenderToStandardError() {
+    String gender = "unsupported";
+    String[] args = {"Name", gender, "3.64"};
+    MainMethodResult result = invokeMain(Student.class, args);
+    assertThat(result.getExitCode(), equalTo(1));
+
+    String error = "Unsupported Gender: " + gender;
+    assertThat(result.getTextWrittenToStandardError(), containsString(error));
+  }
 }
