@@ -35,7 +35,15 @@ public class Student extends Human {
   }
 
   enum Gender {
-    FEMALE, MALE, OTHER;
+    FEMALE("She says"),
+    MALE("He says"),
+    OTHER("They say");
+
+    private final String pronounSays;
+
+    Gender(String pronounSays) {
+      this.pronounSays = pronounSays;
+    }
 
     public static Gender getGenderForString(String genderString) {
       switch (genderString) {
@@ -51,6 +59,10 @@ public class Student extends Human {
         default:
           throw new UnsupportedGenderException(genderString);
       }
+    }
+
+    public String getPronounSays() {
+      return this.pronounSays;
     }
   }
 
@@ -73,23 +85,7 @@ public class Student extends Human {
       + (numClasses != 1 ? "es" : "")
       + (numClasses == 0 ? '.' : ": " + listOfClasses() + ".")
       + "  "
-      + getPronounSays();
-  }
-
-  private String getPronounSays() {
-    switch (this.gender) {
-      case FEMALE:
-        return "She says";
-
-      case MALE:
-        return "He says";
-
-      case OTHER:
-        return "They say";
-
-      default:
-        throw new IllegalStateException("How did I get here?");
-    }
+      + this.gender.getPronounSays();
   }
 
   private String listOfClasses() {
