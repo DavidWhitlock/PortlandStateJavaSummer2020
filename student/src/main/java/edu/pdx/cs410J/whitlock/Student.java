@@ -11,7 +11,7 @@ public class Student extends Human {
 
   private final double gpa;
   private final ArrayList<String> classes;
-  private final String gender;
+  private final Gender gender;
 
   /**
    * Creates a new <code>Student</code>                                             
@@ -31,7 +31,27 @@ public class Student extends Human {
 
     this.gpa = gpa;
     this.classes = classes;
-    this.gender = gender;
+    this.gender = Gender.getGenderForString(gender);
+  }
+
+  enum Gender {
+    FEMALE, MALE, OTHER;
+
+    public static Gender getGenderForString(String genderString) {
+      switch (genderString) {
+        case "female":
+          return Gender.FEMALE;
+
+        case "male":
+          return Gender.MALE;
+
+        case "other":
+          return Gender.OTHER;
+
+        default:
+          throw new UnsupportedGenderException(genderString);
+      }
+    }
   }
 
 //  /**
@@ -58,14 +78,17 @@ public class Student extends Human {
 
   private String getPronounSays() {
     switch (this.gender) {
-      case "female":
+      case FEMALE:
         return "She says";
 
-      case "male":
+      case MALE:
         return "He says";
 
-      default:
+      case OTHER:
         return "They say";
+
+      default:
+        throw new IllegalStateException("How did I get here?");
     }
   }
 

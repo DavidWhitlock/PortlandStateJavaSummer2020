@@ -18,7 +18,7 @@ public class StudentTest
 {
 
   private Student createStudentNamed(String name) {
-    return new Student(name, new ArrayList<>(), 0.0, "Doesn't matter");
+    return new Student(name, new ArrayList<>(), 0.0, "other");
   }
 
   @Test
@@ -38,7 +38,7 @@ public class StudentTest
   @Test
   public void toStringContainsGpa() {
     double gpa = 3.76;
-    Student pat = new Student("Pat", new ArrayList<>(), gpa, "Doesn't matter");
+    Student pat = new Student("Pat", new ArrayList<>(), gpa, "other");
     assertThat(pat.toString(), containsString("has a GPA of " + gpa));
   }
 
@@ -70,7 +70,7 @@ public class StudentTest
   public void studentTaking1ClassHasASingularWord() {
     ArrayList<String> classes = new ArrayList<>();
     classes.add("English");
-    Student student = new Student("Name", classes, 1.23, "doesn't matter");
+    Student student = new Student("Name", classes, 1.23, "other");
 
     assertThat(student.toString(), containsString("and is taking 1 class:"));
   }
@@ -78,7 +78,7 @@ public class StudentTest
   @Test
   public void studentTaking0ClassesHasNoColonInSentence() {
     ArrayList<String> classes = new ArrayList<>();
-    Student student = new Student("Name", classes, 1.23, "doesn't matter");
+    Student student = new Student("Name", classes, 1.23, "other");
 
     assertThat(student.toString(), containsString("and is taking 0 classes.  "));
   }
@@ -87,7 +87,7 @@ public class StudentTest
   public void studentTaking1ClassHasNoComma() {
     ArrayList<String> classes = new ArrayList<>();
     classes.add("English");
-    Student student = new Student("Name", classes, 1.23, "doesn't matter");
+    Student student = new Student("Name", classes, 1.23, "other");
 
     assertThat(student.toString(), containsString("class: English.  "));
   }
@@ -97,7 +97,7 @@ public class StudentTest
     ArrayList<String> classes = new ArrayList<>();
     classes.add("English");
     classes.add("History");
-    Student student = new Student("Name", classes, 1.23, "doesn't matter");
+    Student student = new Student("Name", classes, 1.23, "other");
 
     assertThat(student.toString(), containsString("classes: English and History."));
   }
@@ -118,15 +118,20 @@ public class StudentTest
 
   @Test
   public void otherStudentHasTheyPronoun() {
-    Student female = new Student("Other", new ArrayList<>(), 3.78, "other");
+    Student other = new Student("Other", new ArrayList<>(), 3.78, "other");
 
-    assertThat(female.toString(), containsString("They say"));
+    assertThat(other.toString(), containsString("They say"));
   }
 
   @Test
   public void maleStudentHasHePronoun() {
-    Student female = new Student("Him", new ArrayList<>(), 3.78, "male");
+    Student male = new Student("Him", new ArrayList<>(), 3.78, "male");
 
-    assertThat(female.toString(), containsString("He says"));
+    assertThat(male.toString(), containsString("He says"));
+  }
+
+  @Test(expected = UnsupportedGenderException.class)
+  public void studentWithUnsupportedGenderThrowsUnsupportedGenderException() {
+    new Student("Unsupported", new ArrayList<>(), 3.78, "Unsupported");
   }
 }
