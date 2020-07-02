@@ -139,4 +139,14 @@ public class StudentTest
 
     assertThat(dave.says(), equalTo("This class is too much work"));
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void studentWithAnEmptyNameThrowIllegalArgumentException() {
+    new Student("", new ArrayList<>(), 3.45, "other");
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void gpaGreaterThan40ThrowsIllegalArgumentException() {
+    new Student("Name", new ArrayList<>(), 4.5, "other");
+  }
 }

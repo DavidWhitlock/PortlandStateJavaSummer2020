@@ -29,6 +29,14 @@ public class Student extends Human {
   public Student(String name, ArrayList<String> classes, double gpa, String gender) {
     super(name);
 
+    if (name.equals("")) {
+      throw new IllegalArgumentException("Name cannot be empty");
+    }
+
+    if (gpa > 4.0) {
+      throw new IllegalArgumentException("GPA cannot be greater than 4.0");
+    }
+
     this.gpa = gpa;
     this.classes = classes;
     this.gender = Gender.getGenderForString(gender);
