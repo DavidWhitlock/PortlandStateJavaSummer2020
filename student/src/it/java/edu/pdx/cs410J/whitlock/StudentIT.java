@@ -43,8 +43,8 @@ public class StudentIT extends InvokeMainTestCase {
   public void studentCanTakeZeroClasses() {
     MainMethodResult result = invokeMain(Student.class, "Sumit", "other", "3.45");
     assertThat(result.getExitCode(), equalTo(0));
-//    String description = "Sumit has a GPA of 3.45 and is taking 0 classes.  " +
-//      "They say \"This class is too much work\".";
-//    assertThat(result.getTextWrittenToStandardOut(), containsString(description));
+    String description = "Sumit has a GPA of 3.45 and is taking 0 classes.  " +
+      "They say \"This class is too much work\".";
+    assertThat(result.getTextWrittenToStandardOut(), containsString(description));
   }
 }

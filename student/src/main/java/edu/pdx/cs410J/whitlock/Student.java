@@ -131,6 +131,12 @@ public class Student extends Human {
       System.exit(1);
     }
 
+    String gpaString = args[2];
+    double gpa = Double.parseDouble(gpaString);
+
+    Student student = new Student(args[0], new ArrayList<>(), gpa, args[1]);
+    System.out.println(student);
+
     System.exit(0);
   }
 }
