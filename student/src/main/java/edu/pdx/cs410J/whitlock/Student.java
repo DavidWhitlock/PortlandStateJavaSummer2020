@@ -118,7 +118,19 @@ public class Student extends Human {
    * standard out by invoking its <code>toString</code> method.
    */
   public static void main(String[] args) {
-    System.err.println("Missing command line arguments");
-    System.exit(1);
+    if (args.length == 0) {
+      System.err.println("Missing command line arguments");
+      System.exit(1);
+
+    } else if (args.length == 1) {
+      System.err.println("Missing gender");
+      System.exit(1);
+
+    } else if (args.length == 2) {
+      System.err.println("Missing GPA");
+      System.exit(1);
+    }
+
+    System.exit(0);
   }
 }
