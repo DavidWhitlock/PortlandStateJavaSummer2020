@@ -66,13 +66,13 @@ public class Student extends Human {
     }
   }
 
-//  /**
-//   * All students say "This class is too much work"
-//   */
-//  @Override
-//  public String says() {
-//    throw new UnsupportedOperationException("Not implemented yet");
-//  }
+  /**
+   * All students say "This class is too much work"
+   */
+  @Override
+  public String says() {
+    return "This class is too much work";
+  }
                                                                                     
   /**                                                                               
    * Returns a <code>String</code> that describes this                              
@@ -85,7 +85,9 @@ public class Student extends Human {
       + (numClasses != 1 ? "es" : "")
       + (numClasses == 0 ? '.' : ": " + listOfClasses() + ".")
       + "  "
-      + this.gender.getPronounSays();
+      + this.gender.getPronounSays()
+      + " \"" + this.says() + "\"."
+      ;
   }
 
   private String listOfClasses() {

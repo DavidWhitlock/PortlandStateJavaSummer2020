@@ -1,6 +1,5 @@
 package edu.pdx.cs410J.whitlock;
 
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -42,7 +41,6 @@ public class StudentTest
     assertThat(pat.toString(), containsString("has a GPA of " + gpa));
   }
 
-  @Ignore
   @Test
   public void toStringForExampleInAssignment() {
     Student dave = createDaveStudent();
@@ -133,5 +131,12 @@ public class StudentTest
   @Test(expected = UnsupportedGenderException.class)
   public void studentWithUnsupportedGenderThrowsUnsupportedGenderException() {
     new Student("Unsupported", new ArrayList<>(), 3.78, "Unsupported");
+  }
+
+  @Test
+  public void allStudentsSayThisClassIsTooMuchWork() {
+    Student dave = createDaveStudent();
+
+    assertThat(dave.says(), equalTo("This class is too much work"));
   }
 }
