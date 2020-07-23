@@ -1,8 +1,6 @@
 package edu.pdx.cs410J.whitlock;
 
 import edu.pdx.cs410J.InvokeMainTestCase;
-import edu.pdx.cs410J.UncaughtExceptionInMain;
-import edu.pdx.cs410J.whitlock.PhoneBillRestClient.PhoneBillRestException;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -35,40 +33,32 @@ public class Project4IT extends InvokeMainTestCase {
     }
 
     @Test
-    public void test2EmptyServer() {
-        MainMethodResult result = invokeMain( Project4.class, HOSTNAME, PORT );
-        assertThat(result.getTextWrittenToStandardError(), result.getExitCode(), equalTo(0));
-        String out = result.getTextWrittenToStandardOut();
-        assertThat(out, out, containsString(Messages.formatWordCount(0)));
-    }
-
-    @Test(expected = PhoneBillRestException.class)
-    public void test3NoDefinitionsThrowsAppointmentBookRestException() throws Throwable {
-        String word = "WORD";
-        try {
-            invokeMain(Project4.class, HOSTNAME, PORT, word);
-
-        } catch (UncaughtExceptionInMain ex) {
-            throw ex.getCause();
-        }
+    public void test3UnknownPhoneBillIssuesUnknownPhoneBillError() throws Throwable {
+        String customer = "Customer";
+        MainMethodResult result = invokeMain(Project4.class, HOSTNAME, PORT, customer);
+        assertThat(result.getTextWrittenToStandardError(), containsString("No phone bill for customer " + customer));
+        assertThat(result.getExitCode(), equalTo(1));
     }
 
     @Test
-    public void test4AddDefinition() {
-        String word = "WORD";
-        String definition = "DEFINITION";
+    public void test4AddPhoneCall() {
+        String customer = "Customer";
+        String caller = "234-567-8901";
 
-        MainMethodResult result = invokeMain( Project4.class, HOSTNAME, PORT, word, definition );
-        assertThat(result.getTextWrittenToStandardError(), result.getExitCode(), equalTo(0));
-        String out = result.getTextWrittenToStandardOut();
-        assertThat(out, out, containsString(Messages.definedWordAs(word, definition)));
+        MainMethodResult result = invokeMain( Project4.class, HOSTNAME, PORT, customer, caller );
+        assertThat(result.getTextWrittenToStandardOut(), equalTo(""));
+        assertThat(result.getExitCode(), equalTo(0));
+    }
 
-        result = invokeMain( Project4.class, HOSTNAME, PORT, word );
-        out = result.getTextWrittenToStandardOut();
-        assertThat(out, out, containsString(Messages.formatDictionaryEntry(word, definition)));
+    @Test
+    public void test5PhoneBillIsPrettyPrinted() {
+        String customer = "Customer";
+        String caller = "234-567-8901";
 
-        result = invokeMain( Project4.class, HOSTNAME, PORT );
-        out = result.getTextWrittenToStandardOut();
-        assertThat(out, out, containsString(Messages.formatDictionaryEntry(word, definition)));
+        MainMethodResult result = invokeMain( Project4.class, HOSTNAME, PORT, customer );
+        assertThat(result.getExitCode(), equalTo(0));
+        String pretty = result.getTextWrittenToStandardOut();
+        assertThat(pretty, containsString(customer));
+        assertThat(pretty, containsString("  " + caller));
     }
 }
