@@ -39,9 +39,18 @@ public class PhoneBillServlet extends HttpServlet
         String customer = getParameter(CUSTOMER_PARAMETER, request );
         if (customer == null) {
             missingRequiredParameter(response, CUSTOMER_PARAMETER);
+            return;
+
+        }
+
+        PhoneBill bill = getPhoneBill(customer);
+        if (bill == null) {
+            response.sendError(HttpServletResponse.SC_NOT_FOUND, Messages.noPhoneBillForCustomer(customer));
 
         } else {
-            response.sendError(HttpServletResponse.SC_NOT_FOUND, Messages.noPhoneBillForCustomer(customer));
+            PhoneBillTextDumper dumper = new PhoneBillTextDumper(response.getWriter());
+            dumper.dump(bill);
+            response.setStatus(HttpServletResponse.SC_OK);
         }
     }
 
@@ -126,4 +135,8 @@ public class PhoneBillServlet extends HttpServlet
         return this.phoneBills.get(customer);
     }
 
+    @VisibleForTesting
+    void addPhoneBill(PhoneBill bill) {
+        this.phoneBills.put(bill.getCustomer(), bill);
+    }
 }
