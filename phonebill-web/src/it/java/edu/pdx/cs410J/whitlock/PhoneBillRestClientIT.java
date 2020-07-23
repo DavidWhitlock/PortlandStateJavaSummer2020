@@ -12,6 +12,7 @@ import java.util.Map;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.fail;
 
 /**
  * Integration test that tests the REST calls made by {@link PhoneBillRestClient}
@@ -27,16 +28,21 @@ public class PhoneBillRestClientIT {
   }
 
   @Test
-  public void test0RemoveAllDictionaryEntries() throws IOException {
+  public void test0RemoveAllPhoneBills() throws IOException {
     PhoneBillRestClient client = newPhoneBillRestClient();
-    client.removeAllDictionaryEntries();
+    client.removeAllPhoneBills();
   }
 
   @Test
-  public void test1EmptyServerContainsNoDictionaryEntries() throws IOException {
+  public void test1NonexistentPhoneBillThrowsException() throws IOException {
     PhoneBillRestClient client = newPhoneBillRestClient();
-    Map<String, String> dictionary = client.getAllDictionaryEntries();
-    assertThat(dictionary.size(), equalTo(0));
+    try {
+      client.getPhoneBill("Dave");
+      fail("Should have thrown a PhoneBillRestException");
+
+    } catch (PhoneBillRestClient.PhoneBillRestException ex) {
+      assertThat(ex.getHttpStatusCode(), equalTo(HttpURLConnection.HTTP_NOT_FOUND));
+    }
   }
 
   @Test
@@ -46,7 +52,7 @@ public class PhoneBillRestClientIT {
     String testDefinition = "TEST DEFINITION";
     client.addDictionaryEntry(testWord, testDefinition);
 
-    String definition = client.getDefinition(testWord);
+    String definition = client.getPhoneBill(testWord);
     assertThat(definition, equalTo(testDefinition));
   }
 
