@@ -6,4 +6,57 @@
     android:layout_height="match_parent"
     tools:context=".CalculatorActivity">
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/leftOperand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:minWidth="30pt"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="241dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="18dp"
+            android:text="+"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/leftOperand"
+            tools:layout_editor_absoluteY="256dp" />
+
+        <EditText
+            android:id="@+id/rightOperand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="30pt"
+            app:layout_constraintEnd_toStartOf="@+id/execute"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView3"
+            tools:layout_editor_absoluteY="241dp" />
+
+        <Button
+            android:id="@+id/execute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="="
+            tools:layout_editor_absoluteX="178dp"
+            tools:layout_editor_absoluteY="238dp" />
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="30pt" />
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
