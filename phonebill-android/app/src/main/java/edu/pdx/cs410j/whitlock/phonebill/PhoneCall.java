@@ -5,21 +5,21 @@ import edu.pdx.cs410J.AbstractPhoneCall;
 public class PhoneCall extends AbstractPhoneCall {
     @Override
     public String getCaller() {
-        return null;
+        return "Me";
     }
 
     @Override
     public String getCallee() {
-        return null;
+        return "You";
     }
 
     @Override
     public String getStartTimeString() {
-        return null;
+        return "Then";
     }
 
     @Override
     public String getEndTimeString() {
-        return null;
+        return "Now";
     }
 }

@@ -42,9 +42,15 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == CALCULATOR_RESULT && resultCode == RESULT_OK) {
-            if (data != null && data.hasExtra("Sum")) {
-                Operation result = (Operation) data.getSerializableExtra("Sum");
-                Toast.makeText(this, "Result was " + result, Toast.LENGTH_LONG).show();
+            if (data != null) {
+                if (data.hasExtra("Sum")){
+                    Operation result = (Operation) data.getSerializableExtra("Sum");
+                    Toast.makeText(this, "Result was " + result, Toast.LENGTH_LONG).show();
+                }
+                if (data.hasExtra("PhoneCall")) {
+                    PhoneCall result = (PhoneCall) data.getSerializableExtra("PhoneCall");
+                    Toast.makeText(this, "PhoneCall was " + result, Toast.LENGTH_LONG).show();
+                }
             }
         }
     }

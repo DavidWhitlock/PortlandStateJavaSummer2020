@@ -42,6 +42,7 @@ public class CalculatorActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(CalculatorActivity.this, MainActivity.class);
                 intent.putExtra("Sum", sum);
+                intent.putExtra("PhoneCall", new PhoneCall());
                 setResult(RESULT_OK, intent);
                 finish();
             }
