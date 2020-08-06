@@ -51,6 +51,10 @@ public class MainActivity extends AppCompatActivity {
                     PhoneCall result = (PhoneCall) data.getSerializableExtra("PhoneCall");
                     Toast.makeText(this, "PhoneCall was " + result, Toast.LENGTH_LONG).show();
                 }
+                if (data.hasExtra("PhoneBill")) {
+                    PhoneBill result = (PhoneBill) data.getSerializableExtra("PhoneBill");
+                    Toast.makeText(this, "PhoneBill was " + result, Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
