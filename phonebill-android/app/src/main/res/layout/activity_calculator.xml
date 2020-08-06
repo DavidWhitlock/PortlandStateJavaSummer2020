@@ -20,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:minWidth="30pt"
+            android:inputType="numberDecimal"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="241dp" />
 
@@ -41,7 +42,8 @@
             app:layout_constraintEnd_toStartOf="@+id/execute"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView3"
-            tools:layout_editor_absoluteY="241dp" />
+            tools:layout_editor_absoluteY="241dp"
+            android:inputType="numberDecimal" />
 
         <Button
             android:id="@+id/execute"
