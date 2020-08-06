@@ -24,6 +24,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,6 +55,17 @@ public class MainActivity extends AppCompatActivity {
         resultsView.setAdapter(results);
     }
 
+    private void saveResults() throws IOException {
+        File dir = getDataDir();
+        File file = new File(dir, "results.txt");
+        try (PrintWriter pw = new PrintWriter(new FileWriter(file), true)) {
+            for (int i = 0; i < results.getCount(); i++) {
+                pw.println(results.getItem(i));
+            }
+            pw.flush();
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -61,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
                     Operation result = (Operation) data.getSerializableExtra("Sum");
                     Toast.makeText(this, "Result was " + result, Toast.LENGTH_LONG).show();
                     results.add(result.getValue());
+                    try {
+                        saveResults();
+                    } catch (IOException e) {
+                        Toast.makeText(this, "While writing file " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
                 }
                 if (data.hasExtra("PhoneCall")) {
                     PhoneCall result = (PhoneCall) data.getSerializableExtra("PhoneCall");
