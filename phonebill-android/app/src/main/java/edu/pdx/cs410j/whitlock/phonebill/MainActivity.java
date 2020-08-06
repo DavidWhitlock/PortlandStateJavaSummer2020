@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (requestCode == CALCULATOR_RESULT && resultCode == RESULT_OK) {
             if (data != null && data.hasExtra("Sum")) {
-                double result = data.getDoubleExtra("Sum", 0.0);
+                Operation result = (Operation) data.getSerializableExtra("Sum");
                 Toast.makeText(this, "Result was " + result, Toast.LENGTH_LONG).show();
             }
         }
