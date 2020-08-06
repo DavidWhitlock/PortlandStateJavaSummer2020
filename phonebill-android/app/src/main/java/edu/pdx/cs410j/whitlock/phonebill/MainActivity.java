@@ -30,6 +30,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static final int CALCULATOR_RESULT = 43;
+    private ArrayAdapter<Double> results;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +46,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ListView results = findViewById(R.id.results);
-        List<Double> numbers = new ArrayList<>();
-        for (double d = 0.0; d < 100.0; d++) {
-            numbers.add(d);
-        }
-        results.setAdapter(new ResultsAdapter(this, android.R.layout.simple_list_item_1, numbers));
+        ListView resultsView = findViewById(R.id.results);
+        results = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        resultsView.setAdapter(results);
     }
 
     @Override
@@ -62,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 if (data.hasExtra("Sum")){
                     Operation result = (Operation) data.getSerializableExtra("Sum");
                     Toast.makeText(this, "Result was " + result, Toast.LENGTH_LONG).show();
+                    results.add(result.getValue());
                 }
                 if (data.hasExtra("PhoneCall")) {
                     PhoneCall result = (PhoneCall) data.getSerializableExtra("PhoneCall");
@@ -75,9 +74,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static class ResultsAdapter extends ArrayAdapter<Double> {
-        public ResultsAdapter(@NonNull Context context, int resource, @NonNull List<Double> objects) {
-            super(context, resource, objects);
-        }
-    }
 }
