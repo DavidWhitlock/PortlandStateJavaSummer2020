@@ -7,6 +7,7 @@
     tools:context=".CalculatorActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,8 +20,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:minWidth="30pt"
             android:inputType="numberDecimal"
+            android:minWidth="30pt"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="241dp" />
 
@@ -38,12 +39,12 @@
             android:id="@+id/rightOperand"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
             android:minWidth="30pt"
             app:layout_constraintEnd_toStartOf="@+id/execute"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/textView3"
-            tools:layout_editor_absoluteY="241dp"
-            android:inputType="numberDecimal" />
+            tools:layout_editor_absoluteY="241dp" />
 
         <Button
             android:id="@+id/execute"
@@ -60,5 +61,15 @@
             android:minWidth="30pt" />
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/backToMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back_to_main"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
