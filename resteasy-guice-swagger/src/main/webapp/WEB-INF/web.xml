@@ -3,13 +3,21 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Phone Bill REST Service</display-name>
-  <servlet>
-    <servlet-name>PhoneBillServlet</servlet-name>
-    <servlet-class>edu.pdx.cs410J.whitlock.PhoneBillServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>PhoneBillServlet</servlet-name>
-    <url-pattern>/calls</url-pattern>
-  </servlet-mapping>
+  <display-name>REST API with RestEasy, Guice, and Swagger</display-name>
+
+  <context-param>
+    <param-name>resteasy.guice.modules</param-name>
+    <param-value>edu.pdx.cs410J.whitlock.RestModule</param-value>
+  </context-param>
+  <filter>
+    <filter-name>Guice Filter</filter-name>
+    <filter-class>com.google.inject.servlet.GuiceFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>Guice Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <listener>
+    <listener-class>org.jboss.resteasy.plugins.guice.GuiceResteasyBootstrapServletContextListener</listener-class>
+  </listener>
 </web-app>
