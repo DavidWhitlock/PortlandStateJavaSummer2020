@@ -6,5 +6,16 @@ openAPI:
   info:
     version: 'Summer2020'
     title: 'RestEasy, Guice, and Swagger.  Oh my!'
+    description: An example REST API application that is implemented with RestEasy and Guice and is documented with Swagger
+
+    contact:
+      name: David Whitlock
+      email: whitlock@cs.pdx.edu
+      url: http://www.cs.pdx.edu/~whitlock
+
+    license:
+      name: Apache 2.0
+      url: http://www.apache.org/licenses/LICENSE-2.0.html
+
   servers:
     - url: '/phonebill'
