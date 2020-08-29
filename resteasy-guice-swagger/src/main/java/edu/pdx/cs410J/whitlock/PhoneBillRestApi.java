@@ -1,5 +1,7 @@
 package edu.pdx.cs410J.whitlock;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
@@ -43,8 +45,15 @@ public class PhoneBillRestApi {
 
   @GET
   @Path("{customer}/calls")
-  @ApiResponse(description = "Returns the phone calls in a customer's phone bill")
-  public Response getCalls(@PathParam("customer") String customer) {
+  @Operation(
+    summary = "Returns the phone calls in a customer's phone bill",
+    responses = {
+      @ApiResponse(responseCode = "200", description =  "The customer was found"),
+      @ApiResponse(responseCode = "404", description =  "The customer was not found")
+    }
+  )
+  public Response getCalls(
+    @PathParam("customer") @Parameter(description = "The name of the customer") String customer) {
     PhoneBill bill = phoneBills.get(customer);
 
     if (bill != null) {
