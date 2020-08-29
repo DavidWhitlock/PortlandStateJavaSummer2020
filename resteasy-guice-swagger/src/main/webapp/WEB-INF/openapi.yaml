@@ -1,0 +1,8 @@
+prettyPrint: true
+cacheTTL: 0
+openAPI:
+  info:
+    version: 'Summer2020'
+    title: 'RestEasy, Guice, and Swagger.  Oh my!'
+  servers:
+    - url: '/phonebill'

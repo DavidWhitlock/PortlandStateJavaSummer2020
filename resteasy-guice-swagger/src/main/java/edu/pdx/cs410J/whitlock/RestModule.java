@@ -2,6 +2,8 @@ package edu.pdx.cs410J.whitlock;
 
 import com.google.inject.Singleton;
 import com.google.inject.servlet.ServletModule;
+import io.swagger.v3.jaxrs2.integration.resources.AcceptHeaderOpenApiResource;
+import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 import org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher;
 
 public class RestModule extends ServletModule {
@@ -14,7 +16,11 @@ public class RestModule extends ServletModule {
   protected void configureServlets() {
     bind(PhoneBillRestApi.class);
 
+    bind(OpenApiResource.class);
+    bind(AcceptHeaderOpenApiResource.class);
+
     bind(HttpServletDispatcher.class).in(Singleton.class);
     serve("/PhoneBill/*").with(HttpServletDispatcher.class);
+    serve("/openapi*").with(HttpServletDispatcher.class);
   }
 }

@@ -119,6 +119,11 @@
         <artifactId>swagger-jaxrs2-servlet-initializer</artifactId>
         <version>${swagger.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>28.2-jre</version>
+    </dependency>
   </dependencies>
   <build>
     <finalName>phonebill</finalName>  <!-- Need finalName to make integration tests work -->
