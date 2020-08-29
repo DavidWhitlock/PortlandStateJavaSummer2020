@@ -15,12 +15,14 @@ public class RestModule extends ServletModule {
   @Override
   protected void configureServlets() {
     bind(PhoneBillRestApi.class);
+    bind(EchoRestApi.class);
 
     bind(OpenApiResource.class);
     bind(AcceptHeaderOpenApiResource.class);
 
     bind(HttpServletDispatcher.class).in(Singleton.class);
     serve("/PhoneBill/*").with(HttpServletDispatcher.class);
+    serve("/Echo/*").with(HttpServletDispatcher.class);
     serve("/openapi*").with(HttpServletDispatcher.class);
   }
 }

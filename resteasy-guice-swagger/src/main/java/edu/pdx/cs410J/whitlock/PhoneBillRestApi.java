@@ -17,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Path("PhoneBill")
-@Tag(name = "Phone Bill")
+@Tag(name = "Phone Bill", description = "Access the phone bill database")
 @Produces(MediaType.TEXT_PLAIN)
 public class PhoneBillRestApi {
 

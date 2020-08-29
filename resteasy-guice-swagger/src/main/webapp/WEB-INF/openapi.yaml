@@ -2,6 +2,7 @@ prettyPrint: true
 cacheTTL: 0
 resourceClasses:
   - edu.pdx.cs410J.whitlock.PhoneBillRestApi
+  - edu.pdx.cs410J.whitlock.EchoRestApi
 openAPI:
   info:
     version: 'Summer2020'
