@@ -1,8 +1,12 @@
 package edu.pdx.cs410J.whitlock;
 
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.PrintWriter;
@@ -11,6 +15,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Path("PhoneBill")
+@Tag(name = "Phone Bill")
+@Produces(MediaType.TEXT_PLAIN)
 public class PhoneBillRestApi {
 
   private final Map<String, PhoneBill> phoneBills = new HashMap<>();
@@ -37,6 +43,7 @@ public class PhoneBillRestApi {
 
   @GET
   @Path("{customer}/calls")
+  @ApiResponse(description = "Returns the phone calls in a customer's phone bill")
   public Response getCalls(@PathParam("customer") String customer) {
     PhoneBill bill = phoneBills.get(customer);
 

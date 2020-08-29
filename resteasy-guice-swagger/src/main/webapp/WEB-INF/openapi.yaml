@@ -1,5 +1,7 @@
 prettyPrint: true
 cacheTTL: 0
+resourceClasses:
+  - edu.pdx.cs410J.whitlock.PhoneBillRestApi
 openAPI:
   info:
     version: 'Summer2020'
