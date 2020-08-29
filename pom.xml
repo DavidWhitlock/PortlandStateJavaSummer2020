@@ -28,6 +28,7 @@ accordingly
     <module>phonebill</module>
     <module>koans</module>
     <module>phonebill-web</module>
+    <module>resteasy-guice-swagger</module>
   </modules>
 
   <inceptionYear>2020</inceptionYear>
